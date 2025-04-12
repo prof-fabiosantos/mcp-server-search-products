@@ -28,10 +28,10 @@ async def get_best_prices(product: str) -> List[str]:
     Busca os melhores preços de um produto nos sites: Americanas, Carrefour, Magalu, Havan.
     """
     results = await asyncio.gather(
-        search_product("https://www.americanas.com.br/busca/", product, ".product-name"),
-        search_product("https://www.carrefour.com.br/busca/", product, ".product-card__title"),
-        search_product("https://www.magazineluiza.com.br/busca/", product, ".product-title"),
-        search_product("https://www.havan.com.br/busca/", product, ".product-item__name")
+        search_product("https://www.americanas.com.br", product, ".product-name"),
+        search_product("https://www.carrefour.com.br", product, ".product-card__title"),
+        search_product("https://www.magazineluiza.com.br", product, ".product-title"),
+        search_product("https://www.havan.com.br", product, ".product-item__name")
     )
     lojas = ["Americanas", "Carrefour", "Magalu", "Havan"]
     return [f"{loja}: {res}" for loja, res in zip(lojas, results)]
